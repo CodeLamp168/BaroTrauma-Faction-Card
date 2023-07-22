@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;900&display=swap');
+*, *::before, *::after {
+    box-sizing:border-box;
+    padding:0;
+    margin:0;
+    font-family:'Barlow';
+    color:white;
+}
+
+
+body {
+  display:grid;
+  place-content: center;
+}
+
+
+
+.card-area {
+    display:grid;
+    place-content: center;
+    grid-auto-flow: row;
+    gap:2em;
+    max-width:1300px;
+    min-height:100vh;
+    padding:1em;
+
+    @media(min-width:750px){
+      grid-template-columns: 1fr 1fr;
+      place-items: center;
+    }
+
+    @media(min-width:1000px){
+    
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+.card {
+    min-width:320px;
+    max-width:340px;
+    height:100%;
+    background-color:black;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:1px 3px 10px rgba(73, 47, 8, 0.973);
+    transition:transform 300ms ease-in-out;
+    animation: cardTransition 1s ease forwards;
+}
+
+.card-info{
+    display:flex;
+    flex-direction: column;
+    padding:1em;
+
+    h1 {
+        font-size:32px;
+        white-space:nowrap;
+    }
+    
+
+    p {
+        margin-top:0.2em;
+    }
+
+    .button-section {
+        display:flex;
+        align-items: center;
+        justify-content: space-between;
+       
+        width:100%;
+    }
+
+    .card-btn {
+        margin-top:1em;
+        padding:10px;
+        border:0;
+        border-radius:10px;
+
+        font-weight:700;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        cursor:pointer;
+    }
+
+    .btn-learn-more {
+        width:150px;
+        cursor:pointer;
+        color:black;
+    }
+
+    .btn-to-link {
+        width:100px;
+        text-align: center;
+        text-decoration: none;
+        background:rgb(67, 164, 255);
+        color:white;
+        animation: slideOutBtn 1s ease forwards;
+    }
+
+    .btn-to-link.active{
+        animation:slideInBtn 1s ease forwards;
+    }
+}
+
+
+.card-info-wrap {
+    margin-top:10px;
+    position:relative;
+
+    .card-opening-info, .card-slide {
+        padding:0px;
+        height:170px;
+        overflow-y:scroll;
+        transition:transform 500ms ease-in-out;
+
+    }
+
+    .card-opening-info {
+        transform:translateX(0%);
+        animation: slideInAndFade 1s ease forwards;
+        position:relative;
+        p {
+            font-size:20px;
+            font-weight:700;
+        }
+        span {
+            font-weight:900;
+        }
+
+        small {
+          font-size:10px;
+          font-style: italic;
+        }
+
+       
+    
+    }
+
+
+    .card-slide {
+        position:absolute;
+        top:0;
+        animation: slideOutAndFade 1s ease forwards;
+
+        p {
+            font-weight:600;
+        }
+
+        span {
+          font-weight:900;
+          font-size:20px;
+        }
+    }
+
+    .card-slide.active {
+        animation: slideInAndFade 1s ease forwards;
+    }
+
+    .card-opening-info.active {
+        animation: slideOutAndFade 1s ease forwards;
+    }
+
+}
+
+.card-image-wrap{
+    .card-img {
+        width:100%;
+        min-height:215px;
+    }
+}
+
+
+
+
+//text-transition
+@keyframes slideInAndFade {
+    0% {
+      transform: translateX(-150%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideOutAndFade {
+    0% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(-150%);
+      opacity: 0;
+    }
+  }
+
+  //button-animation
+
+  @keyframes slideOutBtn {
+    0% {
+      transform: translateX(0%);
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(150%);
+      opacity: 0;
+    }
+  }
+
+  @keyframes slideInBtn {
+    0% {
+      transform: translateX(150%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+@keyframes cardTransition {
+  0% {
+    backdrop-filter: blur(10px);
+    transform:translateY(50%);
+    opacity:0;
+  }
+
+  10% {
+    backdrop-filter: blur(8px);
+    opacity:0.1;
+  }
+  20% {
+    backdrop-filter: blur(4px);
+    opacity:0.2;
+  }
+
+  30% {
+    backdrop-filter: blur(2px);
+    opacity:0.3;
+  }
+
+  40% {
+    opacity:0.4;
+  }
+
+  100%{
+    backdrop-filter: blur(0px);
+    transform:translateY(0%);
+    opacity:1;
+  }
+}
